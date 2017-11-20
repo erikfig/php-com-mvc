@@ -2,6 +2,8 @@
 
 namespace SON\Controller;
 
+use SON\Exceptions\NotFoundException;
+
 abstract class Action
 {
     protected $views;
@@ -25,7 +27,10 @@ abstract class Action
     {
         $current = get_class($this);
         $singleClassName = strtolower(str_replace("Controller","",str_replace("App\\Controllers\\","",$current)));
-        include_once "../App/Views/".$singleClassName."/".$this->action.".phtml";
+        if (file_exists("../App/Views/".$singleClassName."/".$this->action.".phtml")) {
+            include_once "../App/Views/".$singleClassName."/".$this->action.".phtml";
+        } else {
+            throw new NotFoundException("Página não encontrada");
+        }
     }
-
 }

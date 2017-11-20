@@ -11,6 +11,8 @@ class Route extends Bootstrap
     {
         $routes['home'] = array("route"=>'/',"controller"=>"indexController","action"=>"index");
         $routes['contact'] = array("route"=>'/contact',"controller"=>"indexController","action"=>"contact");
+        $routes['error'] = array("route"=>'/error',"controller"=>"indexController","action"=>"error");
+        $routes['viewNotExists'] = array("route"=>'/viewNotExists',"controller"=>"indexController","action"=>"viewNotExists");
         $this->setRoute($routes);
     }
 

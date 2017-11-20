@@ -2,6 +2,7 @@
 
 namespace SON\Init;
 
+use SON\Exceptions\NotFoundException;
 
 abstract class Bootstrap
 {
@@ -17,6 +18,9 @@ abstract class Bootstrap
 
     protected function run($url)
     {
+        if (!isset($this->route[$url])) {
+            throw new NotFoundException("Página não encontrada");
+        }
         array_walk($this->route,function($route)use($url){
             if($url == $route['route']){
                 $class = "App\\Controllers\\".ucfirst($route['controller']);
